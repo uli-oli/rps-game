@@ -6,7 +6,7 @@ const token = process.env.token;
 
 bot.on('ready', () => {
     console.log('Bot in online');
-    bot.channels.cache.get('714957511123533877').send('The bot is online.');
+    bot.channels.cache.get('714957511123533877').send('The bot is now online. Updates may have been deployed.');
 })
 
 bot.on('message', messege=>{
