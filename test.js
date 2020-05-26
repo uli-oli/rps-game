@@ -1,6 +1,6 @@
 const messageResponses = {
     "hello": "how are you",
-    "Hello": "Hello to you!"
+    "HELLO": "Hello to you!"
 }
 
 module.exports = {
