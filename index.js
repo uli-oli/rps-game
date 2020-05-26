@@ -1,12 +1,14 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const { messageResponses } = require("./test.js");
-//const token = 'NzE0OTU2ODY0NzE0MDQ3NTUw.Xs2Nuw.gVUxrI0kk4cimMpGYChpxmTJNNM';
+//const token = 'token id from discord developer app';
 const token = process.env.token;
+
+const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
 
 bot.on('ready', () => {
     console.log('Bot in online');
-    bot.channels.cache.get('714957511123533877').send('The bot is now online. Updates may have been deployed.');
+    bot.channels.cache.get(rps_server_gen_channel).send('The bot is now online. Updates may have been deployed.');
 })
 
 bot.on('message', messege=>{
