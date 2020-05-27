@@ -36,7 +36,11 @@ bot.on("message", (message) => {
             message.reply('pong.');
             break;
         case 'date':
-            message.reply(date_time);
+            var today2 = new Date();
+            var date2 = today2.getFullYear()+'/'+(today2.getMonth()+1)+'/'+today2.getDate();
+            var time2 = today2.getHours()+":"+today2.getMinutes()+":"+today2.getSeconds()+":"+today2.getMilliseconds+" UTC";
+            var date_time2 = date2+' '+time2;
+            message.reply(date_time2);
             break;
         case 'rps':
             message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(messageReaction => {
@@ -97,4 +101,4 @@ bot.on("message", (message) => {
 
 //bot.login(token);
 bot.login(token2);
-//bot.login('enter token here when testing');  //use this when testing
+//bot.login('enter key here when testing locally');  //use this when testing
