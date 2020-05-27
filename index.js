@@ -42,7 +42,7 @@ bot.on("message", (message) => {
         let args = message.content.substring(PREFIX.length).split(" ");
         switch(args[0]){
             case 'help':
-                message.reply(help_message);
+                message.reply("```"+help_message+"```");
                 break;
             case 'test':
                 message.reply('Systems functioning.')
