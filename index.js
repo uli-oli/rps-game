@@ -34,15 +34,15 @@ bot.on("message", (message) => {
             break;
         case 'rps':
             message.reply('Lets play rock, paper, scissors!');
-            message.channel.send('Choose rock, paper, or scissors.').then(messageReaction =>{
-                messageReaction.react("✌️");
+            message.channel.send('Choose rock, paper, or scissors.').then(messageReaction => {
                 messageReaction.react("✊");
                 messageReaction.react("🖐️");
-            //'✌️'+'✊'+'🖐️'
+                messageReaction.react("✌️");
+            })
             break;
-            }
     }
 })
 
-//bot.login(token);
-bot.login(token2);
+bot.login(token);
+//bot.login(token2);
+//bot.login('token goes here');  //use this when testing
