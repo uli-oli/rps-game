@@ -7,6 +7,15 @@ const rps_server_gen_channel = '714957511123533877' //This is the channel ID fro
 const bot1_id = '714956864714047550';
 const bot2_id = '714953926994296994';
 const PREFIX = '.';
+const help_message = `
+.help to display this message
+.test to see if the bot is working
+.ping to pong
+.date to display the current date & time
+.rules to display how .rps works 
+.rps to play rock, paper, scissors
+.rock & .paper. & scissors to play the text version of rock, paper, scissors
+`;
 
 var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -33,16 +42,7 @@ bot.on("message", (message) => {
         let args = message.content.substring(PREFIX.length).split(" ");
         switch(args[0]){
             case 'help':
-                message.reply('The only commands are:\
-                ```\
-                .help to display this message \
-                .test to see if the bot is working \
-                .ping to pong \
-                .date to display the current date & time \
-                .rules to display how .rps works \
-                .rps to play rock, paper, scissors\
-                .rock & .paper. & scissors to play the text version of rock, paper, scissors\
-                ```');
+                message.reply(help_message);
                 break;
             case 'test':
                 message.reply('Systems functioning.')
@@ -53,7 +53,7 @@ bot.on("message", (message) => {
             case 'date':
                 var today2 = new Date();
                 var date2 = today2.getFullYear()+'-'+(today2.getMonth()+1)+'-'+today2.getDate();
-                var time2 = today2.getHours()+":"+today2.getMinutes()+":"+today2.getSeconds()+" UTC";
+                var time2 = today2.getHours()+7+":"+today2.getMinutes()+":"+today2.getSeconds()+" UTC";
                 var date_time2 = date2+' '+time2;
                 message.reply(date_time2);
                 break;
