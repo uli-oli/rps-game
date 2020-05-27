@@ -36,8 +36,7 @@ bot.on("message", (message) => {
             message.reply('pong.');
             break;
         case 'rps':
-            message.reply('Lets play rock, paper, scissors!');
-            message.channel.send('Choose rock, paper, or scissors.').then(messageReaction => {
+            message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(messageReaction => {
                 messageReaction.react("✊");
                 messageReaction.react("🖐️");
                 messageReaction.react("✌️");
