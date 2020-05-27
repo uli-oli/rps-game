@@ -42,6 +42,8 @@ bot.on("message", (message) => {
             var date_time2 = date2+' '+time2;
             message.reply(date_time2);
             break;
+        case 'rules':
+            message.reply('`0=rock`, `1=paper`, `2=scissors`. Rock > Scissors > Paper > Rock');
         case 'rps':
             message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(messageReaction => {
                 messageReaction.react("✊");
