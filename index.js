@@ -15,7 +15,7 @@ const help_message = `
 .rules to display how .rps works
 .gamble to gamble
 .rps to play rock, paper, scissors
-.rock & .paper. & scissors to play the text version of rock, paper, scissors
+.rock & .paper. & .scissors to play the text version of rock, paper, scissors
 `;
 
 var today = new Date();
