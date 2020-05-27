@@ -12,7 +12,8 @@ const help_message = `
 .test to see if the bot is working
 .ping to pong
 .date to display the current date & time
-.rules to display how .rps works 
+.rules to display how .rps works
+.gamble to gamble
 .rps to play rock, paper, scissors
 .rock & .paper. & scissors to play the text version of rock, paper, scissors
 `;
