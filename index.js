@@ -4,7 +4,7 @@ const { messageResponses } = require("./message-responses.js");
 const token = process.env.token; 
 const token2 = process.env.token2; //Different bot with same capabilities
 const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
-const PREFIX = '!';
+const PREFIX = '.';
 
 var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -27,13 +27,13 @@ bot.on("message", (message) => {
     let args = message.content.substring(PREFIX.length).split(" ");
     switch(args[0]){
         case 'help':
-            message.reply('The only command is `!rps` to play rock paper, scissors.');
+            message.reply('The only command is `.rps` to play rock paper, scissors.');
             break;
         case 'test':
             message.reply('Systems functioning.')
             break;
         case 'ping':
-            message.reply('pong!');
+            message.reply('pong.');
             break;
         case 'rps':
             message.reply('Lets play rock, paper, scissors!');
@@ -42,7 +42,7 @@ bot.on("message", (message) => {
                 messageReaction.react("🖐️");
                 messageReaction.react("✌️");
             })
-            message.channel.send("Not fully functional. Currently being developed. Instead type: `!rock`, `!paper` or `!scissors`");
+            message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
             break;
         // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
         case 'rock':
