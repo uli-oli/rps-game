@@ -4,8 +4,8 @@ const { messageResponses } = require("./message-responses.js");
 const token = process.env.token; 
 const token2 = process.env.token2; //Different bot with same capabilities
 const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
-const bot1_id = '714956864714047550';
-const bot2_id = '714953926994296994';
+const bot1_id = '714953926994296994';
+const bot2_id = '714956864714047550';
 const PREFIX = '.';
 const help_message = `
 .help to display this message
@@ -24,7 +24,7 @@ var date_time = date+' '+time;
 var update_deployed = 'The bot is now online. Updates may have been deployed.'+' '+date_time
 
 bot.on('ready', () => {
-    console.log('Bot in online');
+    console.log('Bot is online.');
     bot.channels.cache.get(rps_server_gen_channel).send(update_deployed);
 })
 
@@ -35,7 +35,7 @@ bot.on("message", (message) => {
 })
 
 bot.on("message", (message) => {
-    if(message.author.id == bot1_id || message.author.id == bot2_id || message.content == ""){
+    if (message.author.id == bot1_id || message.author.id == bot2_id || message.content == ""){
         return;
     }
     else{
@@ -53,7 +53,7 @@ bot.on("message", (message) => {
             case 'date':
                 var today2 = new Date();
                 var date2 = today2.getFullYear()+'-'+(today2.getMonth()+1)+'-'+today2.getDate();
-                var time2 = today2.getHours()+7+":"+today2.getMinutes()+":"+today2.getSeconds()+" UTC";
+                var time2 = today2.getHours()+":"+today2.getMinutes()+":"+today2.getSeconds()+" UTC";
                 var date_time2 = date2+' '+time2;
                 message.reply(date_time2);
                 break;
@@ -79,7 +79,7 @@ bot.on("message", (message) => {
                 if (random_number == 2){
                     message.reply('Scissors! You win!');
                 }
-                if (random_number != 0 || random_number != 1 || random_number != 2){
+                if (random_number != 0 && random_number != 1 && random_number != 2){
                     message.reply('Error. Random number (0-2) is: '+random_number);
                 }
                 break;
@@ -94,7 +94,7 @@ bot.on("message", (message) => {
                 if (random_number == 2){
                     message.reply('Scissors! I win!');
                 }
-                if (random_number != 0 || random_number != 1 || random_number != 2){
+                if (random_number != 0 && random_number != 1 && random_number != 2){
                     message.reply('Error. Random number (0-2) is: '+random_number);
                 }
                 break;
@@ -109,7 +109,7 @@ bot.on("message", (message) => {
                 if (random_number == 2){
                     message.reply('Scissors! We tied!');
                 }
-                if (random_number != 0 || random_number != 1 || random_number != 2){
+                if (random_number != 0 && random_number != 1 && random_number != 2){
                     message.reply('Error. Random number (0-2) is: '+random_number);
                 }
                 break;
@@ -119,4 +119,4 @@ bot.on("message", (message) => {
 
 //bot.login(token);
 bot.login(token2);
-//bot.login('enter key here when testing locally');  //use this when testing
+//bot.login('enter key here when testing locally');  //use this when testing "enter key here when testing locally"
