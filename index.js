@@ -70,7 +70,7 @@ bot.on("message", (message) => {
                 if (random_number == 2){
                     message.reply('Scissors! You win!');
                 }
-                if (random_number !== 0 || random_number !== 1 || random_number !== 2){
+                if (random_number != 0 || random_number != 1 || random_number != 2){
                     message.reply('Error. Random number (0-2) is: '+random_number);
                 }
                 break;
@@ -85,7 +85,7 @@ bot.on("message", (message) => {
                 if (random_number == 2){
                     message.reply('Scissors! I win!');
                 }
-                else{
+                if (random_number != 0 || random_number != 1 || random_number != 2){
                     message.reply('Error. Random number (0-2) is: '+random_number);
                 }
                 break;
@@ -100,7 +100,7 @@ bot.on("message", (message) => {
                 if (random_number == 2){
                     message.reply('Scissors! We tied!');
                 }
-                else{
+                if (random_number != 0 || random_number != 1 || random_number != 2){
                     message.reply('Error. Random number (0-2) is: '+random_number);
                 }
                 break;
