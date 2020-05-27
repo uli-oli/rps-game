@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const { messageResponses } = require("./test.js");
+const { messageResponses } = require("./message-responses.js");
 const token = process.env.token;
 const token2 = process.env.token2; //Different bot with same capabilities
 //const token = 'token id from discord developer app';
