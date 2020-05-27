@@ -80,6 +80,6 @@ bot.on("message", (message) => {
     }
 })
 
-bot.login(token);
-//bot.login(token2);
+//bot.login(token);
+bot.login(token2);
 //bot.login('enter token here when testing');  //use this when testing
