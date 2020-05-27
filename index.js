@@ -27,7 +27,10 @@ bot.on("message", (message) => {
     let args = message.content.substring(PREFIX.length).split(" ");
     switch(args[0]){
         case 'ping':
-            message.reply('pong!')
+            message.reply('pong!');
+            break;
+        case 'github':
+            message.reply('https://github.com/Sh-Abd/rps-game');
             break;
     }
 })
