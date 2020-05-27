@@ -37,7 +37,7 @@ bot.on("message", (message) => {
             message.channel.send('Choose rock, paper, or scissors.').then(messageReaction =>{
                 messageReaction.react("✌️");
                 messageReaction.react("✊");
-                messageReaction.react("✌🖐️");
+                messageReaction.react("🖐️");
             //'✌️'+'✊'+'🖐️'
             break;
             }
