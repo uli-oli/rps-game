@@ -27,13 +27,16 @@ bot.on("message", (message) => {
     let args = message.content.substring(PREFIX.length).split(" ");
     switch(args[0]){
         case 'help':
-            message.reply('The only command is `.rps` to play rock paper, scissors.');
+            message.reply('The only commands are `.date` to display the current date & `.rps` to play rock paper, scissors.');
             break;
         case 'test':
             message.reply('Systems functioning.')
             break;
         case 'ping':
             message.reply('pong.');
+            break;
+        case 'date':
+            message.reply(date_time);
             break;
         case 'rps':
             message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(messageReaction => {
