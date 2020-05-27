@@ -39,80 +39,99 @@ bot.on("message", (message) => {
         return;
     }
     else{
-        let args = message.content.substring(PREFIX.length).split(" ");
-        switch(args[0]){
-            case 'help':
-                message.reply("```"+help_message+"```");
-                break;
-            case 'test':
-                message.reply('Systems functioning.')
-                break;
-            case 'ping':
-                message.reply('pong.');
-                break;
-            case 'date':
-                var today2 = new Date();
-                var date2 = today2.getFullYear()+'-'+(today2.getMonth()+1)+'-'+today2.getDate();
-                var time2 = today2.getHours()+":"+today2.getMinutes()+":"+today2.getSeconds()+" UTC";
-                var date_time2 = date2+' '+time2;
-                message.reply(date_time2);
-                break;
-            case 'rules':
-                message.reply('`0=rock`, `1=paper`, `2=scissors`. Rock > Scissors > Paper > Rock');
-            case 'rps':
-                message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(messageReaction => {
-                    messageReaction.react("✊");
-                    messageReaction.react("🖐️");
-                    messageReaction.react("✌️");
-                })
-                message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
-                break;
-            // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
-            case 'rock':
-                var random_number = Math.floor(Math.random()*3);
-                if (random_number == 0){
-                    message.reply('Rock! We tied!');
-                }
-                if (random_number == 1){
-                    message.reply('Paper! I win!');
-                }
-                if (random_number == 2){
-                    message.reply('Scissors! You win!');
-                }
-                if (random_number != 0 && random_number != 1 && random_number != 2){
-                    message.reply('Error. Random number (0-2) is: '+random_number);
-                }
-                break;
-            case 'paper':
-                var random_number = Math.floor(Math.random()*3);
-                if (random_number == 0){
-                    message.reply('Rock! You win!');
-                }
-                if (random_number == 1){
-                    message.reply('Paper! We tied!');
-                }
-                if (random_number == 2){
-                    message.reply('Scissors! I win!');
-                }
-                if (random_number != 0 && random_number != 1 && random_number != 2){
-                    message.reply('Error. Random number (0-2) is: '+random_number);
-                }
-                break;
-            case 'scissors':
-                var random_number = Math.floor(Math.random()*3);
-                if (random_number == 0){
-                    message.reply('Rock! I win!');
-                }
-                if (random_number == 1){
-                    message.reply('Paper! You win!');
-                }
-                if (random_number == 2){
-                    message.reply('Scissors! We tied!');
-                }
-                if (random_number != 0 && random_number != 1 && random_number != 2){
-                    message.reply('Error. Random number (0-2) is: '+random_number);
-                }
-                break;
+        if (message.content.startsWith(PREFIX)){
+            let args = message.content.substring(PREFIX.length).split(" ");
+            switch(args[0]){
+                case 'test':
+                    message.reply('Systems functioning.')
+                    break;
+                case 'ping':
+                    message.reply('pong.');
+                    break;
+                case 'help':
+                case 'h':
+                    message.reply("```"+help_message+"```");
+                    break;
+                case 'gamble':
+                    var random_gamble_number = Math.floor(Math.random()*100)+1;
+                    if(random_gamble_number >= 55){
+                        message.reply('You win! You rolled '+random_gamble_number);
+                    }
+                    if(random_gamble_number <= 54){
+                        message.reply('You lose! You rolled a '+random_gamble_number);
+                    }
+                    break;
+                case 'date':
+                case 'd':
+                    var today2 = new Date();
+                    var date2 = today2.getFullYear()+'-'+(today2.getMonth()+1)+'-'+today2.getDate();
+                    var time2 = today2.getHours()+":"+today2.getMinutes()+":"+today2.getSeconds()+" UTC";
+                    var date_time2 = date2+' '+time2;
+                    message.reply(date_time2);
+                    break;
+                case 'rules':
+                    message.reply('`0=rock`, `1=paper`, `2=scissors`. Rock > Scissors > Paper > Rock');
+                    break;
+                case 'rps':
+                case 'game':
+                case 'play':
+                    message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(messageReaction => {
+                        messageReaction.react("✊");
+                        messageReaction.react("🖐️");
+                        messageReaction.react("✌️");
+                    })
+                    message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
+                    break;
+                // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
+                case 'rock':
+                case 'r':
+                    var random_number = Math.floor(Math.random()*3);
+                    if (random_number == 0){
+                        message.reply('Rock! We tied!');
+                    }
+                    if (random_number == 1){
+                        message.reply('Paper! I win!');
+                    }
+                    if (random_number == 2){
+                        message.reply('Scissors! You win!');
+                    }
+                    if (random_number != 0 && random_number != 1 && random_number != 2){
+                        message.reply('Error. Random number (0-2) is: '+random_number);
+                    }
+                    break;
+                case 'paper':
+                case 'p':
+                    var random_number = Math.floor(Math.random()*3);
+                    if (random_number == 0){
+                        message.reply('Rock! You win!');
+                    }
+                    if (random_number == 1){
+                        message.reply('Paper! We tied!');
+                    }
+                    if (random_number == 2){
+                        message.reply('Scissors! I win!');
+                    }
+                    if (random_number != 0 && random_number != 1 && random_number != 2){
+                        message.reply('Error. Random number (0-2) is: '+random_number);
+                    }
+                    break;
+                case 'scissors':
+                case 's':
+                    var random_number = Math.floor(Math.random()*3);
+                    if (random_number == 0){
+                        message.reply('Rock! I win!');
+                    }
+                    if (random_number == 1){
+                        message.reply('Paper! You win!');
+                    }
+                    if (random_number == 2){
+                        message.reply('Scissors! We tied!');
+                    }
+                    if (random_number != 0 && random_number != 1 && random_number != 2){
+                        message.reply('Error. Random number (0-2) is: '+random_number);
+                    }
+                    break;
+            }
         }
     }
 })
