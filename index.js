@@ -61,13 +61,13 @@ bot.on("message", (message) => {
             // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
             case 'rock':
                 var random_number = Math.floor(Math.random()*3);
-                if (random_number === 0){
+                if (random_number == 0){
                     message.reply('Rock! We tied!');
                 }
-                if (random_number === 1){
+                if (random_number == 1){
                     message.reply('Paper! I win!');
                 }
-                if (random_number === 2){
+                if (random_number == 2){
                     message.reply('Scissors! You win!');
                 }
                 if (random_number !== 0 || random_number !== 1 || random_number !== 2){
@@ -76,13 +76,13 @@ bot.on("message", (message) => {
                 break;
             case 'paper':
                 var random_number = Math.floor(Math.random()*3);
-                if (random_number === 0){
+                if (random_number == 0){
                     message.reply('Rock! You win!');
                 }
-                if (random_number === 1){
+                if (random_number == 1){
                     message.reply('Paper! We tied!');
                 }
-                if (random_number === 2){
+                if (random_number == 2){
                     message.reply('Scissors! I win!');
                 }
                 else{
@@ -91,13 +91,13 @@ bot.on("message", (message) => {
                 break;
             case 'scissors':
                 var random_number = Math.floor(Math.random()*3);
-                if (random_number === 0){
+                if (random_number == 0){
                     message.reply('Rock! I win!');
                 }
-                if (random_number === 1){
+                if (random_number == 1){
                     message.reply('Paper! You win!');
                 }
-                if (random_number === 2){
+                if (random_number == 2){
                     message.reply('Scissors! We tied!');
                 }
                 else{
