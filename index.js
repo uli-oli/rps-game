@@ -4,6 +4,8 @@ const { messageResponses } = require("./message-responses.js");
 const token = process.env.token; 
 const token2 = process.env.token2; //Different bot with same capabilities
 const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
+const bot1_id = '714956864714047550';
+const bot2_id = '714953926994296994';
 const PREFIX = '.';
 
 var today = new Date();
@@ -24,6 +26,9 @@ bot.on("message", (message) => {
 })
 
 bot.on("message", (message) => {
+    if(message.author.id == bot1_id || message.author.id == bot2_id || message.content == ""){
+        return;
+    }
     let args = message.content.substring(PREFIX.length).split(" ");
     switch(args[0]){
         case 'help':
