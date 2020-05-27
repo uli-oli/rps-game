@@ -13,7 +13,7 @@ var date_time = date+' '+time;
 
 bot.on('ready', () => {
     console.log('Bot in online');
-    bot.channels.cache.get(rps_server_gen_channel).send('The bot is now online. Updates may have been deployed.'+date_time);
+    bot.channels.cache.get(rps_server_gen_channel).send('The bot is now online. Updates may have been deployed.'+' '+date_time);
     //bot.channels.cache.get(rps_server_gen_channel).send(date_time);
 })
 
