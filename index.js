@@ -32,6 +32,11 @@ bot.on("message", (message) => {
         case 'github':
             message.reply('https://github.com/Sh-Abd/rps-game');
             break;
+        case 'rps':
+            message.reply('Lets play rock, paper, scissors!');
+            message.channel.send('Choose rock, paper, or scissors.');
+            message.react('✌️'+'✊'+'🖐️');
+            break;
     }
 })
 
