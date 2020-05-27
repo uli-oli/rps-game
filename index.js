@@ -14,7 +14,7 @@ bot.on('ready', () => {
 
 bot.on("message", (message) => {
    if (messageResponses[messege.content]){
-       messege.channel.send(messageResponses[message.content]);
+       message.channel.send(messageResponses[message.content]);
    }
 })
 
