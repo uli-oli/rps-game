@@ -55,6 +55,9 @@ bot.on("message", (message) => {
             if (random_number === 3){
                 message.reply('Scissors! You win!');
             }
+            else{
+                message.reply('Error.'+random_number);
+            }
             break;
         case 'paper':
             var random_number = Math.floor(Math.random()*3);
@@ -67,6 +70,9 @@ bot.on("message", (message) => {
             if (random_number === 3){
                 message.reply('Scissors! I win!');
             }
+            else{
+                message.reply('Error.'+random_number);
+            }
             break;
         case 'scissors':
             var random_number = Math.floor(Math.random()*3);
@@ -78,6 +84,9 @@ bot.on("message", (message) => {
             }
             if (random_number === 3){
                 message.reply('Scissors! We tied!');
+            }
+            else{
+                message.reply('Error.'+random_number);
             }
             break;
     }
