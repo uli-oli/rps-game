@@ -56,7 +56,7 @@ bot.on("message", (message) => {
                 message.reply('Scissors! You win!');
             }
             if (random_number !== 0 || random_number !== 1 || random_number !== 2){
-                message.reply('Error. Number is: '+random_number);
+                message.reply('Error. Random number is: '+random_number);
             }
             break;
         case 'paper':
@@ -71,7 +71,7 @@ bot.on("message", (message) => {
                 message.reply('Scissors! I win!');
             }
             else{
-                message.reply('Error. Number is: '+random_number);
+                message.reply('Error. Random number is: '+random_number);
             }
             break;
         case 'scissors':
@@ -86,7 +86,7 @@ bot.on("message", (message) => {
                 message.reply('Scissors! We tied!');
             }
             else{
-                message.reply('Error. Number is: '+random_number);
+                message.reply('Error. Random number is: '+random_number);
             }
             break;
     }
