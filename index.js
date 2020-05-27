@@ -40,6 +40,7 @@ bot.on("message", (message) => {
                 messageReaction.react("✌️");
             })
             break;
+        // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
         case 'rock':
             var random_number = Math.floor(Math.random()*3);
             if (random_number === 1){
