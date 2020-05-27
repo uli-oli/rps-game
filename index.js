@@ -34,9 +34,13 @@ bot.on("message", (message) => {
             break;
         case 'rps':
             message.reply('Lets play rock, paper, scissors!');
-            message.channel.send('Choose rock, paper, or scissors.').then(message.react('✌️✊🖐️'));
+            message.channel.send('Choose rock, paper, or scissors.').then(messageReaction =>{
+                messageReaction.react("✌️");
+                messageReaction.react("✊");
+                messageReaction.react("✌🖐️");
             //'✌️'+'✊'+'🖐️'
             break;
+            }
     }
 })
 
