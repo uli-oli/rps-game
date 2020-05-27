@@ -12,7 +12,7 @@ bot.on('ready', () => {
     bot.channels.cache.get(rps_server_gen_channel).send('The bot is now online. Updates may have been deployed.');
 })
 
-bot.on("message", message => {
+bot.on("message", (message) => {
    if (messageResponses[messege.content]){
        messege.channel.send(messageResponses[message.content]);
    }
