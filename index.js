@@ -26,11 +26,14 @@ bot.on("message", (message) => {
 bot.on("message", (message) => {
     let args = message.content.substring(PREFIX.length).split(" ");
     switch(args[0]){
+        case 'help':
+            message.reply('The only command is `!rps` to play rock paper, scissors.');
+            break;
+        case 'test':
+            message.reply('Systems functioning.')
+            break;
         case 'ping':
             message.reply('pong!');
-            break;
-        case 'github':
-            message.reply('https://github.com/Sh-Abd/rps-game');
             break;
         case 'rps':
             message.reply('Lets play rock, paper, scissors!');
@@ -39,6 +42,7 @@ bot.on("message", (message) => {
                 messageReaction.react("🖐️");
                 messageReaction.react("✌️");
             })
+            message.channel.send("Not fully functional. Currently being developed. Instead type: `!rock`, `!paper` or `!scissors`");
             break;
         // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
         case 'rock':
