@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const { messageResponses } = require("./message-responses.js");
+const { message_responses } = require("./message-responses.js");
 const token = process.env.token; 
 const token2 = process.env.token2; //Different bot with same capabilities
 const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
@@ -30,8 +30,8 @@ bot.on('ready', () => {
 })
 
 bot.on("message", (message) => {
-   if (messageResponses[message.content]){
-       message.channel.send(messageResponses[message.content]);
+   if (message_responses[message.content]){
+       message.channel.send(message_responses[message.content]);
    }
 })
 
@@ -46,18 +46,22 @@ bot.on("message", (message) => {
                 case 'test':
                     message.reply('Systems functioning.')
                     break;
+
                 case 'git':
                 case 'github':
                 case 'g':
                     message.reply('https://github.com/Sh-Abd/rps-game');
                     break;
+
                 case 'ping':
                     message.reply('pong.');
                     break;
+
                 case 'help':
                 case 'h':
                     message.reply("```"+help_message+"```");
                     break;
+
                 case 'gamble':
                     var random_gamble_number = Math.floor(Math.random()*100)+1;
                     if(random_gamble_number >= 55){
@@ -67,6 +71,7 @@ bot.on("message", (message) => {
                         message.reply('You lose! You rolled a '+random_gamble_number);
                     }
                     break;
+
                 case 'date':
                 case 'd':
                     var today2 = new Date();
@@ -75,30 +80,25 @@ bot.on("message", (message) => {
                     var date_time2 = date2+' '+time2;
                     message.reply(date_time2);
                     break;
+
                 case 'rules':
                     message.reply('`0=rock`, `1=paper`, `2=scissors`. Rock > Scissors > Paper > Rock');
                     break;
+
                 case 'rps':
                 case 'game':
                 case 'play':
-                    message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(messageReaction => {
-                    messageReaction.react("✊")
-                    .then (() => messageReaction.react("🖐️"))
-                    .then (() => messageReaction.react("✌️"))
+                    var game_message;
+                    message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(message_reaction => {
+                    message_reaction.react("✊")
+                    .then (() => message_reaction.react("🖐️"))
+                    .then (() => message_reaction.react("✌️"))
                     .catch (() => console.error('One of the emojis failed to react.'));
-                    })
+                    game_message = message_reaction;
                     const filter = (reaction, user) => {
                         return (reaction.emoji.name == "✊" || reaction.emoji.name == "🖐️" || reaction.emoji.name == "✌️") && user.id == message.author.id;
                     };
-                    /*
-                    message.awaitReactions(filter, {max: 1, time: 10000, errors: ['time']})
-                        .then(collected => console.log(collected.size))
-                        .catch(collected => {
-                            console.log(`${collected.size} reacted.`);
-                        });
-                    */
-                    
-                    const collector = message.createReactionCollector(filter, {time: 10000});
+                    const collector = game_message.createReactionCollector(filter, {time: 10000});
                     collector.on('collect', (reaction, user) => {
                         if (reaction.emoji.name == '✊'){
                             console.log('Reacted with rock.');
@@ -115,12 +115,12 @@ bot.on("message", (message) => {
                         console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
                     });
                     collector.on('end', (collected) => {
-                        console.log(`Collected ${collected.size} items`);
+                        console.log(`Collected ${collected.size} items.`);
                     });
-                
-
+                    })
                     message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
                     break;
+
                 // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
                 case 'rock':
                 case 'r':
@@ -139,6 +139,7 @@ bot.on("message", (message) => {
                         message.reply('Error. Random number (0-2) is: '+random_number);
                     }
                     break;
+
                 case 'paper':
                 case 'p':
                 case 'P':
@@ -156,6 +157,7 @@ bot.on("message", (message) => {
                         message.reply('Error. Random number (0-2) is: '+random_number);
                     }
                     break;
+
                 case 'scissors':
                 case 's':
                 case 'S':
