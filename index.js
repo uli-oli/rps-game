@@ -88,21 +88,14 @@ bot.on("message", (message) => {
                     .catch (() => console.error('One of the emojis failed to react.'));
                     })
                     const filter = (reaction, user) => {
-                        return (reaction.emoji.name === '✊' || reaction.emoji.name === '🖐️' || reaction.emoji.name === '✌️') && user.id === message.author.id;
+                        //return (reaction.emoji.name == "✊" || reaction.emoji.name == "🖐️" || reaction.emoji.name == "✌️");
+                        return (reaction.emoji.name == "✊" || reaction.emoji.name == "🖐️" || reaction.emoji.name == "✌️") && user.id == message.author.id;
                     };
-                    const collector = message.createReactionCollector(filter, {time: 10000});
-                    collector.on('collect', (reaction, user) => {
-                        if (message.createReactionCollector() == '✊'){
-                            console.log('Reacted with rock.');
-                        }
-                        else{
-                            console.log('No reaction.');
-                        }
-                        console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
-                    });
-                    collector.on('end', (collected) => {
-                        console.log(`Collected ${collected.size} items`);
-                    });
+                    message.awaitReactions(filter, {max: 1, time: 10000, errors: ['time']})
+                        .then(collected => console.log(collected.size))
+                        .catch(collected => {
+                            console.log(`${collected.size} reacted.`);
+                        });
                     message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
                     break;
                 // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
@@ -168,4 +161,5 @@ bot.on("message", (message) => {
 //LOCAL TEST
 //DONT FORGET TO DELETE KEY BEFORE PUBLISHING
 
-bot.login('enter key here when testing locally');  //use this when testing "enter key here when testing locally"
+const local_login = '';
+bot.login(local_login);  //use this when testing "enter key here when testing locally"
