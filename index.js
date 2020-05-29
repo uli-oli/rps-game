@@ -46,6 +46,11 @@ bot.on("message", (message) => {
                 case 'test':
                     message.reply('Systems functioning.')
                     break;
+                case 'git':
+                case 'github':
+                case 'g':
+                    message.reply('https://github.com/Sh-Abd/rps-game');
+                    break;
                 case 'ping':
                     message.reply('pong.');
                     break;
@@ -77,10 +82,27 @@ bot.on("message", (message) => {
                 case 'game':
                 case 'play':
                     message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(messageReaction => {
-                    then (() => messageReaction.react("✊"));
-                    then (() => messageReaction.react("🖐️"));
-                    then (() => messageReaction.react("✌️"));
+                    messageReaction.react("✊")
+                    .then (() => messageReaction.react("🖐️"))
+                    .then (() => messageReaction.react("✌️"))
+                    .catch (() => console.error('One of the emojis failed to react.'));
                     })
+                    const filter = (reaction, user) => {
+                        return (reaction.emoji.name === '✊' || reaction.emoji.name === '🖐️' || reaction.emoji.name === '✌️') && user.id === message.author.id;
+                    };
+                    const collector = message.createReactionCollector(filter, {time: 10000});
+                    collector.on('collect', (reaction, user) => {
+                        if (message.createReactionCollector() == '✊'){
+                            console.log('Reacted with rock.');
+                        }
+                        else{
+                            console.log('No reaction.');
+                        }
+                        console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
+                    });
+                    collector.on('end', (collected) => {
+                        console.log(`Collected ${collected.size} items`);
+                    });
                     message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
                     break;
                 // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
@@ -141,5 +163,9 @@ bot.on("message", (message) => {
 })
 
 //bot.login(token);
-bot.login(token2);
-//bot.login('enter key here when testing locally');  //use this when testing "enter key here when testing locally"
+//bot.login(token2);
+
+//LOCAL TEST
+//DONT FORGET TO DELETE KEY BEFORE PUBLISHING
+
+bot.login('enter key here when testing locally');  //use this when testing "enter key here when testing locally"
