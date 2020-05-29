@@ -59,7 +59,7 @@ bot.on("message", (message) => {
                         message.reply('You win! You rolled '+random_gamble_number);
                     }
                     if(random_gamble_number <= 54){
-                        message.reply('You lose! You rolled '+random_gamble_number);
+                        message.reply('You lose! You rolled a '+random_gamble_number);
                     }
                     break;
                 case 'date':
@@ -86,6 +86,7 @@ bot.on("message", (message) => {
                 // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
                 case 'rock':
                 case 'r':
+                case 'R':
                     var random_number = Math.floor(Math.random()*3);
                     if (random_number == 0){
                         message.reply('Rock! We tied!');
@@ -102,6 +103,7 @@ bot.on("message", (message) => {
                     break;
                 case 'paper':
                 case 'p':
+                case 'P':
                     var random_number = Math.floor(Math.random()*3);
                     if (random_number == 0){
                         message.reply('Rock! You win!');
@@ -118,6 +120,7 @@ bot.on("message", (message) => {
                     break;
                 case 'scissors':
                 case 's':
+                case 'S':
                     var random_number = Math.floor(Math.random()*3);
                     if (random_number == 0){
                         message.reply('Rock! I win!');
