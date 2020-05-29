@@ -90,11 +90,35 @@ bot.on("message", (message) => {
                     const filter = (reaction, user) => {
                         return (reaction.emoji.name == "✊" || reaction.emoji.name == "🖐️" || reaction.emoji.name == "✌️") && user.id == message.author.id;
                     };
+                    /*
                     message.awaitReactions(filter, {max: 1, time: 10000, errors: ['time']})
                         .then(collected => console.log(collected.size))
                         .catch(collected => {
                             console.log(`${collected.size} reacted.`);
                         });
+                    */
+                    
+                    const collector = message.createReactionCollector(filter, {time: 10000});
+                    collector.on('collect', (reaction, user) => {
+                        if (message.createReactionCollector() == '✊'){
+                            console.log('Reacted with rock.');
+                        }
+                        if (message.createReactionCollector() == '🖐️'){
+                            console.log('Reacted with rock.');
+                        }
+                        if (message.createReactionCollector() == '✌️'){
+                            console.log('Reacted with rock.');
+                        }
+                        else{
+                            console.log('No reaction.');
+                        }
+                        console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
+                    });
+                    collector.on('end', (collected) => {
+                        console.log(`Collected ${collected.size} items`);
+                    });
+                
+
                     message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
                     break;
                 // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
