@@ -88,7 +88,6 @@ bot.on("message", (message) => {
                     .catch (() => console.error('One of the emojis failed to react.'));
                     })
                     const filter = (reaction, user) => {
-                        //return (reaction.emoji.name == "✊" || reaction.emoji.name == "🖐️" || reaction.emoji.name == "✌️");
                         return (reaction.emoji.name == "✊" || reaction.emoji.name == "🖐️" || reaction.emoji.name == "✌️") && user.id == message.author.id;
                     };
                     message.awaitReactions(filter, {max: 1, time: 10000, errors: ['time']})
