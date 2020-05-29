@@ -77,9 +77,9 @@ bot.on("message", (message) => {
                 case 'game':
                 case 'play':
                     message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(messageReaction => {
-                        messageReaction.react("✊");
-                        messageReaction.react("🖐️");
-                        messageReaction.react("✌️");
+                    then (() => messageReaction.react("✊"));
+                    then (() => messageReaction.react("🖐️"));
+                    then (() => messageReaction.react("✌️"));
                     })
                     message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
                     break;
