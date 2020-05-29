@@ -89,13 +89,13 @@ bot.on("message", (message) => {
                 case 'R':
                     var random_number = Math.floor(Math.random()*3);
                     if (random_number == 0){
-                        message.reply('You picked rock! I picked rock! We tied!');
+                        message.reply('You picked rock. I picked rock. We tied!');
                     }
                     if (random_number == 1){
-                        message.reply('You picked rock! I picked paper! I win!');
+                        message.reply('You picked rock. I picked paper. I win!');
                     }
                     if (random_number == 2){
-                        message.reply('You picked rock! I picked scissors! You win!');
+                        message.reply('You picked rock. I picked scissors. You win!');
                     }
                     if (random_number != 0 && random_number != 1 && random_number != 2){
                         message.reply('Error. Random number (0-2) is: '+random_number);
@@ -106,13 +106,13 @@ bot.on("message", (message) => {
                 case 'P':
                     var random_number = Math.floor(Math.random()*3);
                     if (random_number == 0){
-                        message.reply('You picked paper! I picked rock! You win!');
+                        message.reply('You picked paper. I picked rock. You win!');
                     }
                     if (random_number == 1){
-                        message.reply('You picked paper! I picked paper! We tied!');
+                        message.reply('You picked paper. I picked paper. We tied!');
                     }
                     if (random_number == 2){
-                        message.reply('You picked paper! I picked scissors! I win!');
+                        message.reply('You picked paper. I picked scissors. I win!');
                     }
                     if (random_number != 0 && random_number != 1 && random_number != 2){
                         message.reply('Error. Random number (0-2) is: '+random_number);
@@ -123,13 +123,13 @@ bot.on("message", (message) => {
                 case 'S':
                     var random_number = Math.floor(Math.random()*3);
                     if (random_number == 0){
-                        message.reply('You picked scissors! I picked rock! I win!');
+                        message.reply('You picked scissors. I picked rock. I win!');
                     }
                     if (random_number == 1){
-                        message.reply('You picked scissors! I picked paper! You win!');
+                        message.reply('You picked scissors. I picked paper. You win!');
                     }
                     if (random_number == 2){
-                        message.reply('You picked scissors! I picked scissors! We tied!');
+                        message.reply('You picked scissors. I picked scissors. We tied!');
                     }
                     if (random_number != 0 && random_number != 1 && random_number != 2){
                         message.reply('Error. Random number (0-2) is: '+random_number);
