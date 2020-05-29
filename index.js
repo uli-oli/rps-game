@@ -59,7 +59,7 @@ bot.on("message", (message) => {
                         message.reply('You win! You rolled '+random_gamble_number);
                     }
                     if(random_gamble_number <= 54){
-                        message.reply('You lose! You rolled a '+random_gamble_number);
+                        message.reply('You lose! You rolled '+random_gamble_number);
                     }
                     break;
                 case 'date':
