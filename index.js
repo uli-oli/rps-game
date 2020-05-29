@@ -101,16 +101,56 @@ bot.on("message", (message) => {
                         const collector = game_message.createReactionCollector(filter, {time: 10000});
                         collector.on('collect', (reaction, user) => {
                             if (reaction.emoji.name == "✊"){
-                                console.log('Reacted with rock.');
+                                //console.log('Reacted with rock.');
+                                var random_number = Math.floor(Math.random()*3);
+                                if (random_number == 0){
+                                    message.reply('You picked rock. I picked rock. We tied!');
+                                }
+                                else if (random_number == 1){
+                                    message.reply('You picked rock. I picked paper. I win!');
+                                }
+                                else if (random_number == 2){
+                                    message.reply('You picked rock. I picked scissors. You win!');
+                                }
+                                else if (random_number != 0 && random_number != 1 && random_number != 2){
+                                    message.reply('Error. Random number (0-2) is: '+random_number);
+                                }
                             }
-                            if (reaction.emoji.name == "🖐️"){
-                                console.log('Reacted with paper.');
+                            else if (reaction.emoji.name == "🖐️"){
+                                //console.log('Reacted with paper.');
+                                var random_number = Math.floor(Math.random()*3);
+                                if (random_number == 0){
+                                    message.reply('You picked paper. I picked rock. You win!');
+                                }
+                                else if (random_number == 1){
+                                    message.reply('You picked paper. I picked paper. We tied!');
+                                }
+                                else if (random_number == 2){
+                                    message.reply('You picked paper. I picked scissors. I win!');
+                                }
+                                else if (random_number != 0 && random_number != 1 && random_number != 2){
+                                    message.reply('Error. Random number (0-2) is: '+random_number);
+                                }
                             }
-                            if (reaction.emoji.name == "✌️"){
-                                console.log('Reacted with scissors.');
+                            else if (reaction.emoji.name == "✌️"){
+                                //console.log('Reacted with scissors.');
+                                var random_number = Math.floor(Math.random()*3);
+                                if (random_number == 0){
+                                    message.reply('You picked scissors. I picked rock. I win!');
+                                }
+                                else if (random_number == 1){
+                                    message.reply('You picked scissors. I picked paper. You win!');
+                                }
+                                else if (random_number == 2){
+                                    message.reply('You picked scissors. I picked scissors. We tied!');
+                                }
+                                else if (random_number != 0 && random_number != 1 && random_number != 2){
+                                    message.reply('Error. Random number (0-2) is: '+random_number);
+                                }
                             }
                             else{
                                 console.log('No reaction.');
+                                message.reply('No reaction detected. Type `.rps` to play again.')
                             }
                             console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
                         });
@@ -118,7 +158,7 @@ bot.on("message", (message) => {
                             console.log(`Collected ${collected.size} items.`);
                         });
                     })
-                    message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
+                    message.channel.send("Not fully functional. Currently being developed.");
                     break;
 
                 // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
@@ -129,13 +169,13 @@ bot.on("message", (message) => {
                     if (random_number == 0){
                         message.reply('You picked rock. I picked rock. We tied!');
                     }
-                    if (random_number == 1){
+                    else if (random_number == 1){
                         message.reply('You picked rock. I picked paper. I win!');
                     }
-                    if (random_number == 2){
+                    else if (random_number == 2){
                         message.reply('You picked rock. I picked scissors. You win!');
                     }
-                    if (random_number != 0 && random_number != 1 && random_number != 2){
+                    else if (random_number != 0 && random_number != 1 && random_number != 2){
                         message.reply('Error. Random number (0-2) is: '+random_number);
                     }
                     break;
@@ -147,13 +187,13 @@ bot.on("message", (message) => {
                     if (random_number == 0){
                         message.reply('You picked paper. I picked rock. You win!');
                     }
-                    if (random_number == 1){
+                    else if (random_number == 1){
                         message.reply('You picked paper. I picked paper. We tied!');
                     }
-                    if (random_number == 2){
+                    else if (random_number == 2){
                         message.reply('You picked paper. I picked scissors. I win!');
                     }
-                    if (random_number != 0 && random_number != 1 && random_number != 2){
+                    else if (random_number != 0 && random_number != 1 && random_number != 2){
                         message.reply('Error. Random number (0-2) is: '+random_number);
                     }
                     break;
@@ -165,13 +205,13 @@ bot.on("message", (message) => {
                     if (random_number == 0){
                         message.reply('You picked scissors. I picked rock. I win!');
                     }
-                    if (random_number == 1){
+                    else if (random_number == 1){
                         message.reply('You picked scissors. I picked paper. You win!');
                     }
-                    if (random_number == 2){
+                    else if (random_number == 2){
                         message.reply('You picked scissors. I picked scissors. We tied!');
                     }
-                    if (random_number != 0 && random_number != 1 && random_number != 2){
+                    else if (random_number != 0 && random_number != 1 && random_number != 2){
                         message.reply('Error. Random number (0-2) is: '+random_number);
                     }
                     break;
@@ -186,5 +226,5 @@ bot.on("message", (message) => {
 //LOCAL TEST
 //DONT FORGET TO DELETE KEY BEFORE PUBLISHING
 
-const local_login = 'NzE0OTU2ODY0NzE0MDQ3NTUw.Xs2lvA.xt87BC_5bD3eYaERjQnLSuy-tBs';
+const local_login = '';
 bot.login(local_login);  //use this when testing "enter key here when testing locally"
