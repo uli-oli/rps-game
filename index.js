@@ -41,7 +41,7 @@ bot.on("message", (message) => {
     }
     else{
         if (message.content.startsWith(PREFIX)){
-            let args = message. content.split(PREFIX);
+            let args = message.content.split(PREFIX);
             switch(args[1]){
                 case 'test':
                     message.reply('Systems functioning.')
