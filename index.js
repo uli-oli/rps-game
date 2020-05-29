@@ -100,13 +100,13 @@ bot.on("message", (message) => {
                     };
                     const collector = game_message.createReactionCollector(filter, {time: 10000});
                     collector.on('collect', (reaction, user) => {
-                        if (reaction.emoji.name == '✊'){
+                        if (reaction.emoji.name == "✊"){
                             console.log('Reacted with rock.');
                         }
-                        if (reaction.emoji.name == '🖐️'){
+                        if (reaction.emoji.name == "🖐️"){
                             console.log('Reacted with paper.');
                         }
-                        if (reaction.emoji.name == '✌️'){
+                        if (reaction.emoji.name == "✌️"){
                             console.log('Reacted with scissors.');
                         }
                         else{
