@@ -90,33 +90,33 @@ bot.on("message", (message) => {
                 case 'play':
                     var game_message;
                     message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(message_reaction => {
-                    message_reaction.react("✊")
-                    .then (() => message_reaction.react("🖐️"))
-                    .then (() => message_reaction.react("✌️"))
-                    .catch (() => console.error('One of the emojis failed to react.'));
-                    game_message = message_reaction;
-                    const filter = (reaction, user) => {
-                        return (reaction.emoji.name == "✊" || reaction.emoji.name == "🖐️" || reaction.emoji.name == "✌️") && user.id == message.author.id;
-                    };
-                    const collector = game_message.createReactionCollector(filter, {time: 10000});
-                    collector.on('collect', (reaction, user) => {
-                        if (reaction.emoji.name == "✊"){
-                            console.log('Reacted with rock.');
-                        }
-                        if (reaction.emoji.name == "🖐️"){
-                            console.log('Reacted with paper.');
-                        }
-                        if (reaction.emoji.name == "✌️"){
-                            console.log('Reacted with scissors.');
-                        }
-                        else{
-                            console.log('No reaction.');
-                        }
-                        console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
-                    });
-                    collector.on('end', (collected) => {
-                        console.log(`Collected ${collected.size} items.`);
-                    });
+                        message_reaction.react("✊")
+                        .then (() => message_reaction.react("🖐️"))
+                        .then (() => message_reaction.react("✌️"))
+                        .catch (() => console.error('One of the emojis failed to react.'));
+                        game_message = message_reaction;
+                        const filter = (reaction, user) => {
+                            return (reaction.emoji.name == "✊" || reaction.emoji.name == "🖐️" || reaction.emoji.name == "✌️") && user.id == message.author.id;
+                        };
+                        const collector = game_message.createReactionCollector(filter, {time: 10000});
+                        collector.on('collect', (reaction, user) => {
+                            if (reaction.emoji.name == "✊"){
+                                console.log('Reacted with rock.');
+                            }
+                            if (reaction.emoji.name == "🖐️"){
+                                console.log('Reacted with paper.');
+                            }
+                            if (reaction.emoji.name == "✌️"){
+                                console.log('Reacted with scissors.');
+                            }
+                            else{
+                                console.log('No reaction.');
+                            }
+                            console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
+                        });
+                        collector.on('end', (collected) => {
+                            console.log(`Collected ${collected.size} items.`);
+                        });
                     })
                     message.channel.send("Not fully functional. Currently being developed. Instead type: `.rock`, `.paper` or `.scissors`");
                     break;
@@ -186,5 +186,5 @@ bot.on("message", (message) => {
 //LOCAL TEST
 //DONT FORGET TO DELETE KEY BEFORE PUBLISHING
 
-const local_login = '';
+const local_login = 'NzE0OTU2ODY0NzE0MDQ3NTUw.Xs2lvA.xt87BC_5bD3eYaERjQnLSuy-tBs';
 bot.login(local_login);  //use this when testing "enter key here when testing locally"
