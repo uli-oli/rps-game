@@ -72,6 +72,6 @@ module.exports = {
                 console.log(`Collected ${collected.size} items.`);
             });
         })
-        message.channel.send("Not fully functional. Currently being developed.");
+        message.channel.send("Mostly functional, few bugs to squash still. Currently being developed.");
     }
 }
