@@ -32,6 +32,7 @@ module.exports ={
                 .addField('Winds',current.winddisplay, true)
                 .addField('Humidity', `${current.humidity}%`, true)
                 message.channel.send({embed});
+                console.log({embed});
         });
         //message.channel.send(JSON.stringify(result[0].current, null, 2)); });
     }
