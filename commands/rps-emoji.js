@@ -72,6 +72,10 @@ module.exports = {
                 console.log(`Collected ${collected.size} items.`);
             });
         })
+        //Add a way to remove reactions
+        //Then another emoji to ask if you want to play again
+        //Have this loop until the person doesn't want to play (via emoji input)
+        //  or until some time has passed without any input from the message author
         message.channel.send("Mostly functional, few bugs to squash still. Currently being developed.");
     }
 }
