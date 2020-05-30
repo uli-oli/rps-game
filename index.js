@@ -105,5 +105,5 @@ bot.on("message", (message) => {
 //LOCAL TEST
 //DONT FORGET TO DELETE KEY BEFORE PUBLISHING
 
-const local_login = 'NzE0OTU2ODY0NzE0MDQ3NTUw.XtHXwQ.3QwzzGXa8oEFOrMyxclMNC4vo1U';
+const local_login = '';
 bot.login(local_login);  //use this when testing "enter key here when testing locally"
