@@ -1,28 +1,23 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const { message_responses } = require("./message-responses.js");
+const {message_responses} = require("./message-responses.js");
 const token = process.env.token; 
 const token2 = process.env.token2; //Different bot with same capabilities
 const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
 const bot1_id = '714953926994296994';
 const bot2_id = '714956864714047550';
 const PREFIX = '.';
-const help_message = `
-.help to display this message
-.test to see if the bot is working
-.ping to pong
-.date to display the current date & time
-.rules to display how .rps works
-.gamble to gamble
-.rps to play rock, paper, scissors
-.rock & .paper. & .scissors to play the text version of rock, paper, scissors
-`;
 
-var today = new Date();
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds()+" UTC";
-var date_time = date+' '+time;
-var update_deployed = 'The bot is now online. Updates may have been deployed.'+' '+date_time
+const fs = require('fs');
+bot.commands = new Discord.Collection();
+
+const command_files = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
+for (const file of command_files){
+    const command = require(`./commands/${file}`);
+    bot.commands.set(command.name, command);
+}
+
+var {update_deployed} = require("./date-time.js");
 
 bot.on('ready', () => {
     console.log('Bot is online.');
@@ -54,31 +49,21 @@ bot.on("message", (message) => {
                     break;
 
                 case 'ping':
-                    message.reply('pong.');
+                    bot.commands.get("ping").execute(message, args);
                     break;
 
                 case 'help':
                 case 'h':
-                    message.reply("```"+help_message+"```");
+                    bot.commands.get("help").execute(message, args);
                     break;
 
                 case 'gamble':
-                    var random_gamble_number = Math.floor(Math.random()*100)+1;
-                    if(random_gamble_number >= 55){
-                        message.reply('You win! You rolled '+random_gamble_number);
-                    }
-                    if(random_gamble_number <= 54){
-                        message.reply('You lose! You rolled a '+random_gamble_number);
-                    }
+                    bot.commands.get("gamble").execute(message, args);
                     break;
 
                 case 'date':
                 case 'd':
-                    var today2 = new Date();
-                    var date2 = today2.getFullYear()+'-'+(today2.getMonth()+1)+'-'+today2.getDate();
-                    var time2 = today2.getHours()+":"+today2.getMinutes()+":"+today2.getSeconds()+" UTC";
-                    var date_time2 = date2+' '+time2;
-                    message.reply(date_time2);
+                    bot.commands.get("date").execute(message, args);
                     break;
 
                 case 'rules':
@@ -88,132 +73,26 @@ bot.on("message", (message) => {
                 case 'rps':
                 case 'game':
                 case 'play':
-                    var game_message;
-                    message.reply('Lets play rock, paper, scissors! Choose an emoji.').then(message_reaction => {
-                        message_reaction.react("✊")
-                        .then (() => message_reaction.react("🖐️"))
-                        .then (() => message_reaction.react("✌️"))
-                        .catch (() => console.error('One of the emojis failed to react.'));
-                        game_message = message_reaction;
-                        const filter = (reaction, user) => {
-                            return (reaction.emoji.name == "✊" || reaction.emoji.name == "🖐️" || reaction.emoji.name == "✌️") && user.id == message.author.id;
-                        };
-                        const collector = game_message.createReactionCollector(filter, {time: 10000});
-                        collector.on('collect', (reaction, user) => {
-                            if (reaction.emoji.name == "✊"){
-                                //console.log('Reacted with rock.');
-                                var random_number = Math.floor(Math.random()*3);
-                                if (random_number == 0){
-                                    message.reply('You picked rock. I picked rock. We tied!');
-                                }
-                                else if (random_number == 1){
-                                    message.reply('You picked rock. I picked paper. I win!');
-                                }
-                                else if (random_number == 2){
-                                    message.reply('You picked rock. I picked scissors. You win!');
-                                }
-                                else if (random_number != 0 && random_number != 1 && random_number != 2){
-                                    message.reply('Error. Random number (0-2) is: '+random_number);
-                                }
-                            }
-                            else if (reaction.emoji.name == "🖐️"){
-                                //console.log('Reacted with paper.');
-                                var random_number = Math.floor(Math.random()*3);
-                                if (random_number == 0){
-                                    message.reply('You picked paper. I picked rock. You win!');
-                                }
-                                else if (random_number == 1){
-                                    message.reply('You picked paper. I picked paper. We tied!');
-                                }
-                                else if (random_number == 2){
-                                    message.reply('You picked paper. I picked scissors. I win!');
-                                }
-                                else if (random_number != 0 && random_number != 1 && random_number != 2){
-                                    message.reply('Error. Random number (0-2) is: '+random_number);
-                                }
-                            }
-                            else if (reaction.emoji.name == "✌️"){
-                                //console.log('Reacted with scissors.');
-                                var random_number = Math.floor(Math.random()*3);
-                                if (random_number == 0){
-                                    message.reply('You picked scissors. I picked rock. I win!');
-                                }
-                                else if (random_number == 1){
-                                    message.reply('You picked scissors. I picked paper. You win!');
-                                }
-                                else if (random_number == 2){
-                                    message.reply('You picked scissors. I picked scissors. We tied!');
-                                }
-                                else if (random_number != 0 && random_number != 1 && random_number != 2){
-                                    message.reply('Error. Random number (0-2) is: '+random_number);
-                                }
-                            }
-                            else{
-                                console.log('No reaction.');
-                                message.reply('No reaction detected. Type `.rps` to play again.')
-                            }
-                            console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
-                        });
-                        collector.on('end', (collected) => {
-                            console.log(`Collected ${collected.size} items.`);
-                        });
-                    })
-                    message.channel.send("Not fully functional. Currently being developed.");
+                    bot.commands.get("rps").execute(message, args);
                     break;
 
                 // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
                 case 'rock':
                 case 'r':
                 case 'R':
-                    var random_number = Math.floor(Math.random()*3);
-                    if (random_number == 0){
-                        message.reply('You picked rock. I picked rock. We tied!');
-                    }
-                    else if (random_number == 1){
-                        message.reply('You picked rock. I picked paper. I win!');
-                    }
-                    else if (random_number == 2){
-                        message.reply('You picked rock. I picked scissors. You win!');
-                    }
-                    else if (random_number != 0 && random_number != 1 && random_number != 2){
-                        message.reply('Error. Random number (0-2) is: '+random_number);
-                    }
+                    bot.commands.get("rps text rock").execute(message, args);
                     break;
 
                 case 'paper':
                 case 'p':
                 case 'P':
-                    var random_number = Math.floor(Math.random()*3);
-                    if (random_number == 0){
-                        message.reply('You picked paper. I picked rock. You win!');
-                    }
-                    else if (random_number == 1){
-                        message.reply('You picked paper. I picked paper. We tied!');
-                    }
-                    else if (random_number == 2){
-                        message.reply('You picked paper. I picked scissors. I win!');
-                    }
-                    else if (random_number != 0 && random_number != 1 && random_number != 2){
-                        message.reply('Error. Random number (0-2) is: '+random_number);
-                    }
+                    bot.commands.get("rps text paper").execute(message, args);
                     break;
 
                 case 'scissors':
                 case 's':
                 case 'S':
-                    var random_number = Math.floor(Math.random()*3);
-                    if (random_number == 0){
-                        message.reply('You picked scissors. I picked rock. I win!');
-                    }
-                    else if (random_number == 1){
-                        message.reply('You picked scissors. I picked paper. You win!');
-                    }
-                    else if (random_number == 2){
-                        message.reply('You picked scissors. I picked scissors. We tied!');
-                    }
-                    else if (random_number != 0 && random_number != 1 && random_number != 2){
-                        message.reply('Error. Random number (0-2) is: '+random_number);
-                    }
+                    bot.commands.get("rps text scissors").execute(message, args);
                     break;
             }
         }
