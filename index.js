@@ -4,11 +4,11 @@ const {message_responses} = require("./message-responses.js");
 const token = process.env.token; 
 const token2 = process.env.token2; //Different bot with same capabilities
 const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
-const bot1_id = '714953926994296994';
-const bot2_id = '714956864714047550';
+const bot1_id = '714953926994296994'; //this is S's bot
+const bot2_id = '714956864714047550';// this is U's bot 
 const PREFIX = '.';
 
-const fs = require('fs');
+const fs = require('fs'); //this for files 
 bot.commands = new Discord.Collection();
 
 const command_files = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -19,6 +19,7 @@ for (const file of command_files){
 
 var {update_deployed} = require("./date-time.js");
 
+var{current_temp} = require ("./temp.js");
 bot.on('ready', () => {
     console.log('Bot is online.');
     bot.channels.cache.get(rps_server_gen_channel).send(update_deployed);
@@ -64,6 +65,15 @@ bot.on("message", (message) => {
                 case 'date':
                 case 'd':
                     bot.commands.get("date").execute(message, args);
+                    break;
+                
+                case 'temp':
+                case 't':
+                    message.channel.send("Weather test message.");
+                    const weather = require('weather-js')
+                    weather.find({search: message.content.slice(PREFIX.length).split(" ").slice(1).join(" "), degreeType: 'F'}, function(err, result){
+                    if(err) message.channel.send(err);
+                    message.channel.send(JSON.stringify(result[0].current, null, 2)); });
                     break;
 
                 case 'rules':
