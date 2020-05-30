@@ -19,7 +19,7 @@ for (const file of command_files){
 
 var {update_deployed} = require("./date-time.js");
 
-var{current_temp} = require ("./temp.js");
+//var{current_temp} = require ("./temp.js");
 bot.on('ready', () => {
     console.log('Bot is online.');
     bot.channels.cache.get(rps_server_gen_channel).send(update_deployed);
@@ -69,11 +69,7 @@ bot.on("message", (message) => {
                 
                 case 'temp':
                 case 't':
-                    message.channel.send("Weather test message.");
-                    const weather = require('weather-js')
-                    weather.find({search: message.content.slice(PREFIX.length).split(" ").slice(1).join(" "), degreeType: 'F'}, function(err, result){
-                    if(err) message.channel.send(err);
-                    message.channel.send(JSON.stringify(result[0].current, null, 2)); });
+                    bot.commands.get("weather").execute(message, args);
                     break;
 
                 case 'rules':
