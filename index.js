@@ -68,7 +68,9 @@ bot.on("message", (message) => {
                     break;
                 
                 case 'temp':
+                case 'weather':
                 case 't':
+                case 'w':
                     bot.commands.get("weather").execute(message, args);
                     break;
 
