@@ -111,5 +111,5 @@ bot.on("message", (message) => {
 })
 
 //bot.login(token);
-//bot.login(token2);
-bot.login(local_login);  //use this when testing locally
+bot.login(token2);
+//bot.login(local_login);  //use this when testing locally

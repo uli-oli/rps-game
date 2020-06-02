@@ -8,7 +8,7 @@ module.exports ={
     execute(message, args){
         //message.channel.send("Weather test message.");
         let weather_message = message.content.toUpperCase();
-        console.log("Message content: '" + message.content + "'");
+        //console.log("Message content: '" + message.content + "'");
         weather.find({search: args.join(" "), degreeType: "F"}, function(error, result){
             //console.log(weather.find);
             if (error){
@@ -19,16 +19,18 @@ module.exports ={
             if (!args[0]){
                 console.log(args);
                 console.log("No location set");
-                return message.channel.send("Please specify a location");
+                return message.reply("Please specify a location");
             }
             if (result == undefined || result.length == 0){
                 console.log("Invalid location");
-                return message.channel.send("Invalid location");
+                return message.reply("Invalid location");
             }
+            /*
             else {
                 console.log("Else branch chosen");
                 console.log(message.content + " from " + message.author.username + "#" + message.author.discriminator);
             }
+            */
 
             var current = result[0].current;
             var location = result[0].location;
@@ -44,11 +46,12 @@ module.exports ={
                 .addField('Feels Like', `${current.feelslike}°`, true)
                 .addField('Winds', current.winddisplay, true)
                 .addField('Humidity', `${current.humidity}%`, true);
-
-                console.log("error: " + error);
-                console.log({weather_info});
-                message.channel.send({weather_info});
-                message.reply({weather_info});
+                if (error){
+                    console.log("error: " + error);
+                    //console.log({weather_info});
+                }
+                //message.channel.send(weather_info);
+                message.reply(weather_info);
         });
         //message.channel.send(JSON.stringify(result[0].current, null, 2)); });
     }
