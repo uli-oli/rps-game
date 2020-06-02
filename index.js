@@ -1,8 +1,9 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const {message_responses} = require("./message-responses.js");
-const token = process.env.token; 
-const token2 = process.env.token2; //Different bot with same capabilities
+const {token} = require("./token.js");
+const {token2} = require("./token.js");
+const {local_login} = require("./token.js");
 const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
 const bot1_id = '714953926994296994'; //this is S's bot
 const bot2_id = '714956864714047550';// this is U's bot 
@@ -19,7 +20,6 @@ for (const file of command_files){
 
 var {update_deployed} = require("./date-time.js");
 
-//var{current_temp} = require ("./temp.js");
 bot.on('ready', () => {
     console.log('Bot is online.');
     bot.channels.cache.get(rps_server_gen_channel).send(update_deployed);
@@ -38,7 +38,10 @@ bot.on("message", (message) => {
     else{
         if (message.content.startsWith(PREFIX)){
             let args = message.content.split(PREFIX);
-            switch(args[1]){
+            let cmd_args = args[1].split(" ");
+            console.log("'" + message.content + "' from " + message.author.username + "#" + message.author.discriminator);
+            console.log(cmd_args);
+            switch(cmd_args[0]){
                 case 'test':
                     message.reply('Systems functioning.')
                     break;
@@ -71,7 +74,7 @@ bot.on("message", (message) => {
                 case 'weather':
                 case 't':
                 case 'w':
-                    bot.commands.get("weather").execute(message, args);
+                    bot.commands.get("weather").execute(message, cmd_args);
                     break;
 
                 case 'rules':
@@ -109,9 +112,4 @@ bot.on("message", (message) => {
 
 //bot.login(token);
 //bot.login(token2);
-
-//LOCAL TEST
-//DONT FORGET TO DELETE KEY BEFORE PUBLISHING
-
-const local_login = '';
-bot.login(local_login);  //use this when testing "enter key here when testing locally"
+bot.login(local_login);  //use this when testing locally

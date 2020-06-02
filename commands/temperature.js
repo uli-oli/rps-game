@@ -8,19 +8,16 @@ module.exports ={
     execute(message, args){
         //message.channel.send("Weather test message.");
         let weather_message = message.content.toUpperCase();
-        let sender = message.author;
-        let cont = message.content.slice(PREFIX.length).split(" ");
-        //let args = cont.slice(1)
-        //message.content.slice(PREFIX.length).split(" ").slice(1)
-        var result;
-
+        console.log("Message content: '" + message.content + "'");
         weather.find({search: args.join(" "), degreeType: "F"}, function(error, result){
+            //console.log(weather.find);
             if (error){
                 console.log(error);
                 message.channel.send(error);
                 return message.channel.send(error);
             }
             if (!args[0]){
+                console.log(args);
                 console.log("No location set");
                 return message.channel.send("Please specify a location");
             }
@@ -30,7 +27,7 @@ module.exports ={
             }
             else {
                 console.log("Else branch chosen");
-                console.log(message);
+                console.log(message.content + " from " + message.author.username + "#" + message.author.discriminator);
             }
 
             var current = result[0].current;
@@ -48,9 +45,10 @@ module.exports ={
                 .addField('Winds', current.winddisplay, true)
                 .addField('Humidity', `${current.humidity}%`, true);
 
-                message.channel.send({weather_info});
-                message.reply(weather_info);
+                console.log("error: " + error);
                 console.log({weather_info});
+                message.channel.send({weather_info});
+                message.reply({weather_info});
         });
         //message.channel.send(JSON.stringify(result[0].current, null, 2)); });
     }
