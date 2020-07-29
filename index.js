@@ -36,7 +36,7 @@ bot.on("message", (message) => {
     }
     else{
         if(message.content.startsWith(PREFIX)){
-            let args = message.content.split(PREFIX).toLowerCase();
+            let args = message.content.toLowerCase().split(PREFIX);
             let cmd_args = args[1].split(" ");
             console.log("'" + message.content + "' from " + message.author.username + "#" + message.author.discriminator);
             console.log(cmd_args);
@@ -89,19 +89,16 @@ bot.on("message", (message) => {
                 // TEXT BASED ROCK PAPER SCISSORS GAME BELOW
                 case 'rock':
                 case 'r':
-                case 'R':
                     bot.commands.get("rps text rock").execute(message, args);
                     break;
 
                 case 'paper':
                 case 'p':
-                case 'P':
                     bot.commands.get("rps text paper").execute(message, args);
                     break;
 
                 case 'scissors':
                 case 's':
-                case 'S':
                     bot.commands.get("rps text scissors").execute(message, args);
                     break;
             }
