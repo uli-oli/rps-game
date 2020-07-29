@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const {message_responses} = require("./message-responses.js");
-const {token} = require("./token.js");
-const {token2} = require("./token.js");
+const {token} = require("./token.js"); // S's bot
+const {token2} = require("./token.js"); // U's bot
 const {local_login} = require("./token.js");
 const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
 const bot1_id = '714953926994296994'; //this is S's bot
