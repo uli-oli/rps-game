@@ -1,6 +1,6 @@
 const PREFIX = '.';
 const Discord = require('discord.js');
-var weather = require('weather-js');
+let weather = require('weather-js');
 
 module.exports ={
     name: "weather",
@@ -11,17 +11,17 @@ module.exports ={
         //console.log("Message content: '" + message.content + "'");
         weather.find({search: args.join(" "), degreeType: "F"}, function(error, result){
             //console.log(weather.find);
-            if (error){
+            if(error){
                 console.log(error);
                 message.channel.send(error);
                 return message.channel.send(error);
             }
-            if (!args[0]){
+            if(!args[0]){
                 console.log(args);
                 console.log("No location set");
                 return message.reply("Please specify a location");
             }
-            if (result == undefined || result.length == 0){
+            if(result == undefined || result.length == 0){
                 console.log("Invalid location");
                 return message.reply("Invalid location");
             }
@@ -32,8 +32,8 @@ module.exports ={
             }
             */
 
-            var current = result[0].current;
-            var location = result[0].location;
+            let current = result[0].current;
+            let location = result[0].location;
             const weather_info = new Discord.MessageEmbed()
             //const weather_info = new Discord.RichEmbed()
                 .setDescription(`**${current.skytext}**`)
@@ -46,7 +46,7 @@ module.exports ={
                 .addField('Feels Like', `${current.feelslike}°`, true)
                 .addField('Winds', current.winddisplay, true)
                 .addField('Humidity', `${current.humidity}%`, true);
-                if (error){
+                if(error){
                     console.log("error: " + error);
                     //console.log({weather_info});
                 }

@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const {message_responses} = require("./message-responses.js");
-const {token} = require("./token.js"); // S's bot
 const {token2} = require("./token.js"); // U's bot
 const {local_login} = require("./token.js");
 const rps_server_gen_channel = '714957511123533877' //This is the channel ID from the RPS discord
@@ -13,12 +12,12 @@ const fs = require('fs'); //this for files
 bot.commands = new Discord.Collection();
 
 const command_files = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
-for (const file of command_files){
+for(const file of command_files){
     const command = require(`./commands/${file}`);
     bot.commands.set(command.name, command);
 }
 
-var {update_deployed} = require("./date-time.js");
+let {update_deployed} = require("./date-time.js");
 
 bot.on('ready', () => {
     console.log('Bot is online.');
@@ -26,18 +25,18 @@ bot.on('ready', () => {
 })
 
 bot.on("message", (message) => {
-   if (message_responses[message.content]){
+   if(message_responses[message.content]){
        message.channel.send(message_responses[message.content]);
    }
 })
 
 bot.on("message", (message) => {
-    if (message.author.id == bot1_id || message.author.id == bot2_id || message.content == ""){
+    if(message.author.id == bot1_id || message.author.id == bot2_id || message.content == ""){
         return;
     }
     else{
-        if (message.content.startsWith(PREFIX)){
-            let args = message.content.split(PREFIX);
+        if(message.content.startsWith(PREFIX)){
+            let args = message.content.split(PREFIX).toLowerCase();
             let cmd_args = args[1].split(" ");
             console.log("'" + message.content + "' from " + message.author.username + "#" + message.author.discriminator);
             console.log(cmd_args);
@@ -110,6 +109,5 @@ bot.on("message", (message) => {
     }
 })
 
-//bot.login(token);
 bot.login(token2);
 //bot.login(local_login);  //use this when testing locally
