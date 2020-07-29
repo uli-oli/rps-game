@@ -1,13 +1,13 @@
 {
   "name": "rps-game",
   "version": "1.0.0",
-  "description": "",
+  "description": "Rock Paper Scissors game with a discord bot via discord.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "",
+  "author": "uli-oli",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.2.0",
