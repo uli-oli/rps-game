@@ -1,10 +1,11 @@
+// IF TESTING LOCALLY
+// require('dotenv').config();
+// const token2 = '';
+// const local_login = process.env.local_login;
 
-const token2 = process.env.token2; //Different bot with same capabilities
-
-//LOCAL TEST
-//DONT FORGET TO DELETE KEY BEFORE PUBLISHING
-
-const local_login = ''; //use this when testing locally
+// IF GOING ONLINE
+const token2 = process.env.token2;
+const local_login = '';
 
 module.exports = {
     token2, local_login

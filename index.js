@@ -38,7 +38,7 @@ bot.on("message", (message) => {
         if(message.content.startsWith(PREFIX)){
             let args = message.content.toLowerCase().split(PREFIX);
             let cmd_args = args[1].split(" ");
-            console.log("'" + message.content + "' from " + message.author.username + "#" + message.author.discriminator);
+            console.log(`\n${message.content} from ${message.author.username} #${message.author.discriminator}`);
             console.log(cmd_args);
             switch(cmd_args[0]){
                 case 'test':
@@ -107,4 +107,4 @@ bot.on("message", (message) => {
 })
 
 bot.login(token2);
-//bot.login(local_login);  //use this when testing locally
+// bot.login(local_login);  //use this when testing locally
